@@ -1,0 +1,20 @@
+version = 1
+revision = 3
+requires-python = ">=3.13.1"
+
+[[package]]
+name = "owlready2"
+version = "0.48"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/8d/79/01daa72fbd07b1d4dd0907356d0ae486a684f0bd4654430f27a3e31206ee/owlready2-0.48.tar.gz", hash = "sha256:86b4d8500d769a674c524b54397fdd738ff5d0a96878432b69f4d606d6a7a4d8", size = 27298462, upload-time = "2025-05-27T09:15:03.095Z" }
+
+[[package]]
+name = "smartshipyard"
+version = "0.1.0"
+source = { virtual = "." }
+dependencies = [
+    { name = "owlready2" },
+]
+
+[package.metadata]
+requires-dist = [{ name = "owlready2", specifier = ">=0.48" }]

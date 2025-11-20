@@ -1,0 +1,892 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+         xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+         xmlns:owl="http://www.w3.org/2002/07/owl#"
+         xml:base="http://example.org/smartshipyard.owl"
+         xmlns="http://example.org/smartshipyard.owl#">
+
+<owl:Ontology rdf:about="http://example.org/smartshipyard.owl"/>
+
+<owl:ObjectProperty rdf:about="#locatedIn">
+  <rdfs:domain>
+    <owl:Class>
+      <owl:unionOf rdf:parseType="Collection">
+        <rdf:Description rdf:about="#PhysicalAsset"/>
+        <rdf:Description rdf:about="#Equipment"/>
+        <rdf:Description rdf:about="#Person"/>
+      </owl:unionOf>
+    </owl:Class>
+  </rdfs:domain>
+  <rdfs:range rdf:resource="#ShipyardFacility"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#partOf">
+  <rdfs:domain rdf:resource="#VesselComponent"/>
+  <rdfs:range rdf:resource="#Vessel"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#installedOn">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+  <rdfs:domain rdf:resource="#Sensor"/>
+  <rdfs:range>
+    <owl:Class>
+      <owl:unionOf rdf:parseType="Collection">
+        <rdf:Description rdf:about="#PhysicalAsset"/>
+        <rdf:Description rdf:about="#Equipment"/>
+      </owl:unionOf>
+    </owl:Class>
+  </rdfs:range>
+  <rdfs:range>
+    <owl:Class>
+      <owl:unionOf rdf:parseType="Collection">
+        <rdf:Description rdf:about="#PhysicalAsset"/>
+        <rdf:Description rdf:about="#Equipment"/>
+        <rdf:Description rdf:about="#ShipyardFacility"/>
+      </owl:unionOf>
+    </owl:Class>
+  </rdfs:range>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#operatedBy">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+  <rdfs:domain>
+    <owl:Class>
+      <owl:unionOf rdf:parseType="Collection">
+        <rdf:Description rdf:about="#Equipment"/>
+        <rdf:Description rdf:about="#Process"/>
+      </owl:unionOf>
+    </owl:Class>
+  </rdfs:domain>
+  <rdfs:range rdf:resource="#Worker"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#supervisedBy">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+  <rdfs:domain>
+    <owl:Class>
+      <owl:unionOf rdf:parseType="Collection">
+        <rdf:Description rdf:about="#Worker"/>
+        <rdf:Description rdf:about="#Process"/>
+      </owl:unionOf>
+    </owl:Class>
+  </rdfs:domain>
+  <rdfs:range>
+    <owl:Class>
+      <owl:unionOf rdf:parseType="Collection">
+        <rdf:Description rdf:about="#Manager"/>
+        <rdf:Description rdf:about="#Engineer"/>
+      </owl:unionOf>
+    </owl:Class>
+  </rdfs:range>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#inspectedBy">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+  <rdfs:domain>
+    <owl:Class>
+      <owl:unionOf rdf:parseType="Collection">
+        <rdf:Description rdf:about="#Vessel"/>
+        <rdf:Description rdf:about="#VesselComponent"/>
+        <rdf:Description rdf:about="#Process"/>
+      </owl:unionOf>
+    </owl:Class>
+  </rdfs:domain>
+  <rdfs:range rdf:resource="#QualityInspector"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#monitors">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+  <rdfs:domain rdf:resource="#Sensor"/>
+  <rdfs:range>
+    <owl:Class>
+      <owl:unionOf rdf:parseType="Collection">
+        <rdf:Description rdf:about="#PhysicalAsset"/>
+        <rdf:Description rdf:about="#Equipment"/>
+        <rdf:Description rdf:about="#Process"/>
+      </owl:unionOf>
+    </owl:Class>
+  </rdfs:range>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#usedIn">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+  <rdfs:domain rdf:resource="#Material"/>
+  <rdfs:range rdf:resource="#Process"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#produces">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+  <rdfs:domain rdf:resource="#Process"/>
+  <rdfs:range>
+    <owl:Class>
+      <owl:unionOf rdf:parseType="Collection">
+        <rdf:Description rdf:about="#VesselComponent"/>
+        <rdf:Description rdf:about="#Vessel"/>
+      </owl:unionOf>
+    </owl:Class>
+  </rdfs:range>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#requires">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+  <rdfs:domain rdf:resource="#Process"/>
+  <rdfs:range>
+    <owl:Class>
+      <owl:unionOf rdf:parseType="Collection">
+        <rdf:Description rdf:about="#Equipment"/>
+        <rdf:Description rdf:about="#Material"/>
+        <rdf:Description rdf:about="#Worker"/>
+      </owl:unionOf>
+    </owl:Class>
+  </rdfs:range>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#manages">
+  <rdfs:domain rdf:resource="#DigitalSystem"/>
+  <rdfs:range>
+    <owl:Class>
+      <owl:unionOf rdf:parseType="Collection">
+        <rdf:Description rdf:about="#Process"/>
+        <rdf:Description rdf:about="#Equipment"/>
+        <rdf:Description rdf:about="#Material"/>
+      </owl:unionOf>
+    </owl:Class>
+  </rdfs:range>
+</owl:ObjectProperty>
+
+<owl:DatatypeProperty rdf:about="#hasName">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+  <rdfs:domain rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#hasID">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+  <rdfs:domain rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#hasStatus">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+  <rdfs:domain>
+    <owl:Class>
+      <owl:unionOf rdf:parseType="Collection">
+        <rdf:Description rdf:about="#Equipment"/>
+        <rdf:Description rdf:about="#Process"/>
+        <rdf:Description rdf:about="#Vessel"/>
+      </owl:unionOf>
+    </owl:Class>
+  </rdfs:domain>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#locatedAt">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+  <rdfs:domain>
+    <owl:Class>
+      <owl:unionOf rdf:parseType="Collection">
+        <rdf:Description rdf:about="#PhysicalAsset"/>
+        <rdf:Description rdf:about="#Equipment"/>
+        <rdf:Description rdf:about="#Sensor"/>
+      </owl:unionOf>
+    </owl:Class>
+  </rdfs:domain>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#hasCapacity">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+  <rdfs:domain>
+    <owl:Class>
+      <owl:unionOf rdf:parseType="Collection">
+        <rdf:Description rdf:about="#Equipment"/>
+        <rdf:Description rdf:about="#ShipyardFacility"/>
+      </owl:unionOf>
+    </owl:Class>
+  </rdfs:domain>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#hasTemperature">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+  <rdfs:domain>
+    <owl:Class>
+      <owl:unionOf rdf:parseType="Collection">
+        <rdf:Description rdf:about="#TemperatureSensor"/>
+        <rdf:Description rdf:about="#Process"/>
+      </owl:unionOf>
+    </owl:Class>
+  </rdfs:domain>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#hasVibration">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+  <rdfs:domain rdf:resource="#VibrationSensor"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#hasPressure">
+  <rdfs:domain rdf:resource="#PressureSensor"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#hasHumidity">
+  <rdfs:domain rdf:resource="#HumiditySensor"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#hasCoordinates">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+  <rdfs:domain>
+    <owl:Class>
+      <owl:unionOf rdf:parseType="Collection">
+        <rdf:Description rdf:about="#PositionSensor"/>
+        <rdf:Description rdf:about="#ShipyardFacility"/>
+      </owl:unionOf>
+    </owl:Class>
+  </rdfs:domain>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#hasQuantity">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+  <rdfs:domain rdf:resource="#Material"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#hasCompletionPercentage">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+  <rdfs:domain>
+    <owl:Class>
+      <owl:unionOf rdf:parseType="Collection">
+        <rdf:Description rdf:about="#Process"/>
+        <rdf:Description rdf:about="#Vessel"/>
+      </owl:unionOf>
+    </owl:Class>
+  </rdfs:domain>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#hasVesselType">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+  <rdfs:domain rdf:resource="#Vessel"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#hasLength">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+  <rdfs:domain rdf:resource="#Vessel"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#hasDeadweight">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+  <rdfs:domain rdf:resource="#Vessel"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#hasExperience">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+  <rdfs:domain rdf:resource="#Worker"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#hasCertification">
+  <rdfs:domain rdf:resource="#Worker"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#hasTimestamp">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+  <rdfs:domain>
+    <owl:Class>
+      <owl:unionOf rdf:parseType="Collection">
+        <rdf:Description rdf:about="#Sensor"/>
+        <rdf:Description rdf:about="#Process"/>
+      </owl:unionOf>
+    </owl:Class>
+  </rdfs:domain>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#hasPriority">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+  <rdfs:domain rdf:resource="#Process"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#hasQualityScore">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+  <rdfs:domain>
+    <owl:Class>
+      <owl:unionOf rdf:parseType="Collection">
+        <rdf:Description rdf:about="#VesselComponent"/>
+        <rdf:Description rdf:about="#Process"/>
+      </owl:unionOf>
+    </owl:Class>
+  </rdfs:domain>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+</owl:DatatypeProperty>
+
+<owl:Class rdf:about="#PhysicalAsset">
+  <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Vessel">
+  <rdfs:subClassOf rdf:resource="#PhysicalAsset"/>
+</owl:Class>
+
+<owl:Class rdf:about="#VesselComponent">
+  <rdfs:subClassOf rdf:resource="#PhysicalAsset"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Hull">
+  <rdfs:subClassOf rdf:resource="#VesselComponent"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Engine">
+  <rdfs:subClassOf rdf:resource="#VesselComponent"/>
+</owl:Class>
+
+<owl:Class rdf:about="#NavigationSystem">
+  <rdfs:subClassOf rdf:resource="#VesselComponent"/>
+</owl:Class>
+
+<owl:Class rdf:about="#ElectricalSystem">
+  <rdfs:subClassOf rdf:resource="#VesselComponent"/>
+</owl:Class>
+
+<owl:Class rdf:about="#ShipyardFacility">
+  <rdfs:subClassOf rdf:resource="#PhysicalAsset"/>
+</owl:Class>
+
+<owl:Class rdf:about="#DryDock">
+  <rdfs:subClassOf rdf:resource="#ShipyardFacility"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Workshop">
+  <rdfs:subClassOf rdf:resource="#ShipyardFacility"/>
+</owl:Class>
+
+<owl:Class rdf:about="#WeldingStation">
+  <rdfs:subClassOf rdf:resource="#Workshop"/>
+</owl:Class>
+
+<owl:Class rdf:about="#PaintingStation">
+  <rdfs:subClassOf rdf:resource="#Workshop"/>
+</owl:Class>
+
+<owl:Class rdf:about="#AssemblyStation">
+  <rdfs:subClassOf rdf:resource="#Workshop"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Warehouse">
+  <rdfs:subClassOf rdf:resource="#ShipyardFacility"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Equipment">
+  <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Crane">
+  <rdfs:subClassOf rdf:resource="#Equipment"/>
+</owl:Class>
+
+<owl:Class rdf:about="#WeldingRobot">
+  <rdfs:subClassOf rdf:resource="#Equipment"/>
+</owl:Class>
+
+<owl:Class rdf:about="#CuttingMachine">
+  <rdfs:subClassOf rdf:resource="#Equipment"/>
+</owl:Class>
+
+<owl:Class rdf:about="#TransportVehicle">
+  <rdfs:subClassOf rdf:resource="#Equipment"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Sensor">
+  <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+</owl:Class>
+
+<owl:Class rdf:about="#TemperatureSensor">
+  <rdfs:subClassOf rdf:resource="#Sensor"/>
+</owl:Class>
+
+<owl:Class rdf:about="#VibrationSensor">
+  <rdfs:subClassOf rdf:resource="#Sensor"/>
+</owl:Class>
+
+<owl:Class rdf:about="#PressureSensor">
+  <rdfs:subClassOf rdf:resource="#Sensor"/>
+</owl:Class>
+
+<owl:Class rdf:about="#HumiditySensor">
+  <rdfs:subClassOf rdf:resource="#Sensor"/>
+</owl:Class>
+
+<owl:Class rdf:about="#PositionSensor">
+  <rdfs:subClassOf rdf:resource="#Sensor"/>
+</owl:Class>
+
+<owl:Class rdf:about="#SafetySensor">
+  <rdfs:subClassOf rdf:resource="#Sensor"/>
+</owl:Class>
+
+<owl:Class rdf:about="#QualitySensor">
+  <rdfs:subClassOf rdf:resource="#Sensor"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Person">
+  <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Worker">
+  <rdfs:subClassOf rdf:resource="#Person"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Welder">
+  <rdfs:subClassOf rdf:resource="#Worker"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Electrician">
+  <rdfs:subClassOf rdf:resource="#Worker"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Painter">
+  <rdfs:subClassOf rdf:resource="#Worker"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Engineer">
+  <rdfs:subClassOf rdf:resource="#Person"/>
+</owl:Class>
+
+<owl:Class rdf:about="#QualityInspector">
+  <rdfs:subClassOf rdf:resource="#Person"/>
+</owl:Class>
+
+<owl:Class rdf:about="#SafetyOfficer">
+  <rdfs:subClassOf rdf:resource="#Person"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Manager">
+  <rdfs:subClassOf rdf:resource="#Person"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Process">
+  <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+</owl:Class>
+
+<owl:Class rdf:about="#WeldingProcess">
+  <rdfs:subClassOf rdf:resource="#Process"/>
+</owl:Class>
+
+<owl:Class rdf:about="#AssemblyProcess">
+  <rdfs:subClassOf rdf:resource="#Process"/>
+</owl:Class>
+
+<owl:Class rdf:about="#InspectionProcess">
+  <rdfs:subClassOf rdf:resource="#Process"/>
+</owl:Class>
+
+<owl:Class rdf:about="#PaintingProcess">
+  <rdfs:subClassOf rdf:resource="#Process"/>
+</owl:Class>
+
+<owl:Class rdf:about="#MaintenanceProcess">
+  <rdfs:subClassOf rdf:resource="#Process"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Material">
+  <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+</owl:Class>
+
+<owl:Class rdf:about="#SteelPlate">
+  <rdfs:subClassOf rdf:resource="#Material"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Paint">
+  <rdfs:subClassOf rdf:resource="#Material"/>
+</owl:Class>
+
+<owl:Class rdf:about="#WeldingRod">
+  <rdfs:subClassOf rdf:resource="#Material"/>
+</owl:Class>
+
+<owl:Class rdf:about="#ElectricalCable">
+  <rdfs:subClassOf rdf:resource="#Material"/>
+</owl:Class>
+
+<owl:Class rdf:about="#DigitalSystem">
+  <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+</owl:Class>
+
+<owl:Class rdf:about="#MES">
+  <rdfs:subClassOf rdf:resource="#DigitalSystem"/>
+</owl:Class>
+
+<owl:Class rdf:about="#ERP">
+  <rdfs:subClassOf rdf:resource="#DigitalSystem"/>
+</owl:Class>
+
+<owl:Class rdf:about="#DigitalTwin">
+  <rdfs:subClassOf rdf:resource="#DigitalSystem"/>
+</owl:Class>
+
+<owl:Class rdf:about="#AISystem">
+  <rdfs:subClassOf rdf:resource="#DigitalSystem"/>
+</owl:Class>
+
+<owl:NamedIndividual rdf:about="#DryDock_01">
+  <rdf:type rdf:resource="#DryDock"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Main Dry Dock 1</hasName>
+  <hasID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">DD-001</hasID>
+  <hasCapacity rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">150000.0</hasCapacity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#DryDock_02">
+  <rdf:type rdf:resource="#DryDock"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Dry Dock 2</hasName>
+  <hasID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">DD-002</hasID>
+  <hasCapacity rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">100000.0</hasCapacity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#WeldingShop_01">
+  <rdf:type rdf:resource="#WeldingStation"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Primary Welding Station</hasName>
+  <hasID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">WS-001</hasID>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#PaintingShop_01">
+  <rdf:type rdf:resource="#PaintingStation"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Coating and Painting Station</hasName>
+  <hasID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PS-001</hasID>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#AssemblyShop_01">
+  <rdf:type rdf:resource="#AssemblyStation"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Main Assembly Station</hasName>
+  <hasID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">AS-001</hasID>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Warehouse_01">
+  <rdf:type rdf:resource="#Warehouse"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Materials Warehouse</hasName>
+  <hasID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">WH-001</hasID>
+  <hasCapacity rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">5000.0</hasCapacity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Vessel_Container_001">
+  <rdf:type rdf:resource="#Vessel"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Container Ship Pacific Star</hasName>
+  <hasID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">V-CS-001</hasID>
+  <hasVesselType rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Container Ship</hasVesselType>
+  <hasLength rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">350.0</hasLength>
+  <hasDeadweight rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">145000.0</hasDeadweight>
+  <hasCompletionPercentage rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">65.0</hasCompletionPercentage>
+  <hasStatus rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Under Construction</hasStatus>
+  <locatedAt rdf:datatype="http://www.w3.org/2001/XMLSchema#string">drydock1</locatedAt>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Vessel_Tanker_001">
+  <rdf:type rdf:resource="#Vessel"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Oil Tanker Atlantic Pride</hasName>
+  <hasID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">V-TK-001</hasID>
+  <hasVesselType rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Oil Tanker</hasVesselType>
+  <hasLength rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">280.0</hasLength>
+  <hasDeadweight rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">95000.0</hasDeadweight>
+  <hasCompletionPercentage rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">40.0</hasCompletionPercentage>
+  <hasStatus rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Under Construction</hasStatus>
+  <locatedAt rdf:datatype="http://www.w3.org/2001/XMLSchema#string">drydock2</locatedAt>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Hull_V001">
+  <rdf:type rdf:resource="#Hull"/>
+  <partOf rdf:resource="#Vessel_Container_001"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Hull - Pacific Star</hasName>
+  <hasID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">H-V001</hasID>
+  <hasQualityScore rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">95.5</hasQualityScore>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Engine_V001">
+  <rdf:type rdf:resource="#Engine"/>
+  <partOf rdf:resource="#Vessel_Container_001"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Main Engine - Pacific Star</hasName>
+  <hasID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">E-V001</hasID>
+  <hasQualityScore rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">98.0</hasQualityScore>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#NavSystem_V001">
+  <rdf:type rdf:resource="#NavigationSystem"/>
+  <partOf rdf:resource="#Vessel_Container_001"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Navigation System - Pacific Star</hasName>
+  <hasID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">NS-V001</hasID>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#ElecSystem_V001">
+  <rdf:type rdf:resource="#ElectricalSystem"/>
+  <partOf rdf:resource="#Vessel_Container_001"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Electrical System - Pacific Star</hasName>
+  <hasID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ES-V001</hasID>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Crane_001">
+  <rdf:type rdf:resource="#Crane"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Gantry Crane 1</hasName>
+  <hasID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">CR-001</hasID>
+  <hasCapacity rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">500.0</hasCapacity>
+  <hasStatus rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Operational</hasStatus>
+  <locatedAt rdf:datatype="http://www.w3.org/2001/XMLSchema#string">drydock1</locatedAt>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#WeldRobot_001">
+  <rdf:type rdf:resource="#WeldingRobot"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Automated Welding Robot 1</hasName>
+  <hasID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">WR-001</hasID>
+  <hasStatus rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Operational</hasStatus>
+  <locatedAt rdf:datatype="http://www.w3.org/2001/XMLSchema#string">welding_shop</locatedAt>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#CuttingMachine_001">
+  <rdf:type rdf:resource="#CuttingMachine"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Plasma Cutting Machine</hasName>
+  <hasID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">CM-001</hasID>
+  <hasStatus rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Operational</hasStatus>
+  <locatedAt rdf:datatype="http://www.w3.org/2001/XMLSchema#string">assembly_shop</locatedAt>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#TempSensor_WR001">
+  <rdf:type rdf:resource="#TemperatureSensor"/>
+  <installedOn rdf:resource="#WeldRobot_001"/>
+  <monitors rdf:resource="#WeldRobot_001"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Temperature Sensor - Welding Robot 1</hasName>
+  <hasID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">TS-WR001</hasID>
+  <hasTemperature rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">45.5</hasTemperature>
+  <hasTimestamp rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2025-11-20T17:12:25.861109</hasTimestamp>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#VibSensor_CR001">
+  <rdf:type rdf:resource="#VibrationSensor"/>
+  <installedOn rdf:resource="#Crane_001"/>
+  <monitors rdf:resource="#Crane_001"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Vibration Sensor - Crane 1</hasName>
+  <hasID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">VS-CR001</hasID>
+  <hasVibration rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">2.3</hasVibration>
+  <hasTimestamp rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2025-11-20T17:12:25.861216</hasTimestamp>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#PosSensor_V001">
+  <rdf:type rdf:resource="#PositionSensor"/>
+  <installedOn rdf:resource="#Vessel_Container_001"/>
+  <monitors rdf:resource="#Vessel_Container_001"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Position Tracker - Pacific Star</hasName>
+  <hasID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PS-V001</hasID>
+  <hasCoordinates rdf:datatype="http://www.w3.org/2001/XMLSchema#string">37.8267° N, 122.4233° W</hasCoordinates>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#SafetySensor_WS001">
+  <rdf:type rdf:resource="#SafetySensor"/>
+  <installedOn rdf:resource="#WeldingShop_01"/>
+  <monitors rdf:resource="#WeldingShop_01"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Gas Detection - Welding Shop</hasName>
+  <hasID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">SS-WS001</hasID>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#QualitySensor_H001">
+  <rdf:type rdf:resource="#QualitySensor"/>
+  <installedOn rdf:resource="#Hull_V001"/>
+  <monitors rdf:resource="#Hull_V001"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Ultrasonic Tester - Hull</hasName>
+  <hasID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">QS-H001</hasID>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Welder_001">
+  <rdf:type rdf:resource="#Welder"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">John Smith</hasName>
+  <hasID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">W-001</hasID>
+  <hasExperience rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">15</hasExperience>
+  <hasCertification rdf:datatype="http://www.w3.org/2001/XMLSchema#string">6G Position</hasCertification>
+  <hasCertification rdf:datatype="http://www.w3.org/2001/XMLSchema#string">AWS D1.1</hasCertification>
+  <locatedAt rdf:datatype="http://www.w3.org/2001/XMLSchema#string">welding_shop</locatedAt>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Welder_002">
+  <rdf:type rdf:resource="#Welder"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Maria Garcia</hasName>
+  <hasID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">W-002</hasID>
+  <hasExperience rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">12</hasExperience>
+  <hasCertification rdf:datatype="http://www.w3.org/2001/XMLSchema#string">AWS D1.1</hasCertification>
+  <locatedAt rdf:datatype="http://www.w3.org/2001/XMLSchema#string">welding_shop</locatedAt>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Electrician_001">
+  <rdf:type rdf:resource="#Electrician"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">David Chen</hasName>
+  <hasID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">E-001</hasID>
+  <hasExperience rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">10</hasExperience>
+  <hasCertification rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Master Electrician</hasCertification>
+  <hasCertification rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Marine Systems</hasCertification>
+  <locatedAt rdf:datatype="http://www.w3.org/2001/XMLSchema#string">drydock1</locatedAt>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Painter_001">
+  <rdf:type rdf:resource="#Painter"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Ahmed Hassan</hasName>
+  <hasID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">P-001</hasID>
+  <hasExperience rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">8</hasExperience>
+  <hasCertification rdf:datatype="http://www.w3.org/2001/XMLSchema#string">NACE Coating Inspector</hasCertification>
+  <locatedAt rdf:datatype="http://www.w3.org/2001/XMLSchema#string">painting_shop</locatedAt>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Engineer_001">
+  <rdf:type rdf:resource="#Engineer"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Dr. Sarah Johnson</hasName>
+  <hasID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ENG-001</hasID>
+  <hasExperience rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">20</hasExperience>
+  <hasCertification rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PE License</hasCertification>
+  <hasCertification rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Naval Architect</hasCertification>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Inspector_001">
+  <rdf:type rdf:resource="#QualityInspector"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Robert Lee</hasName>
+  <hasID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">QI-001</hasID>
+  <hasExperience rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">18</hasExperience>
+  <hasCertification rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ISO 9001 Lead Auditor</hasCertification>
+  <hasCertification rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ASNT Level III</hasCertification>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#SafetyOfficer_001">
+  <rdf:type rdf:resource="#SafetyOfficer"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Lisa Brown</hasName>
+  <hasID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">SO-001</hasID>
+  <hasExperience rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">12</hasExperience>
+  <hasCertification rdf:datatype="http://www.w3.org/2001/XMLSchema#string">OSHA 30</hasCertification>
+  <hasCertification rdf:datatype="http://www.w3.org/2001/XMLSchema#string">CSP</hasCertification>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Manager_001">
+  <rdf:type rdf:resource="#Manager"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Michael Anderson</hasName>
+  <hasID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">MGR-001</hasID>
+  <hasExperience rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">25</hasExperience>
+  <locatedAt rdf:datatype="http://www.w3.org/2001/XMLSchema#string">office1</locatedAt>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#WeldingProc_H001">
+  <rdf:type rdf:resource="#WeldingProcess"/>
+  <operatedBy rdf:resource="#Welder_001"/>
+  <supervisedBy rdf:resource="#Engineer_001"/>
+  <produces rdf:resource="#Hull_V001"/>
+  <requires rdf:resource="#WeldRobot_001"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Hull Welding - Section A</hasName>
+  <hasID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">WP-H001</hasID>
+  <hasStatus rdf:datatype="http://www.w3.org/2001/XMLSchema#string">In Progress</hasStatus>
+  <hasCompletionPercentage rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">75.0</hasCompletionPercentage>
+  <hasPriority rdf:datatype="http://www.w3.org/2001/XMLSchema#string">High</hasPriority>
+  <hasTemperature rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">850.0</hasTemperature>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#AssemblyProc_E001">
+  <rdf:type rdf:resource="#AssemblyProcess"/>
+  <supervisedBy rdf:resource="#Engineer_001"/>
+  <produces rdf:resource="#Vessel_Container_001"/>
+  <requires rdf:resource="#Crane_001"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Engine Installation</hasName>
+  <hasID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">AP-E001</hasID>
+  <hasStatus rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Scheduled</hasStatus>
+  <hasCompletionPercentage rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.0</hasCompletionPercentage>
+  <hasPriority rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Medium</hasPriority>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#InspectionProc_H001">
+  <rdf:type rdf:resource="#InspectionProcess"/>
+  <inspectedBy rdf:resource="#Inspector_001"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Hull Quality Inspection</hasName>
+  <hasID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">IP-H001</hasID>
+  <hasStatus rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Completed</hasStatus>
+  <hasCompletionPercentage rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">100.0</hasCompletionPercentage>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#PaintingProc_V001">
+  <rdf:type rdf:resource="#PaintingProcess"/>
+  <operatedBy rdf:resource="#Painter_001"/>
+  <produces rdf:resource="#Hull_V001"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Hull Surface Coating</hasName>
+  <hasID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PP-V001</hasID>
+  <hasStatus rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Pending</hasStatus>
+  <hasCompletionPercentage rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.0</hasCompletionPercentage>
+  <hasPriority rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Low</hasPriority>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#SteelPlate_Stock">
+  <rdf:type rdf:resource="#SteelPlate"/>
+  <usedIn rdf:resource="#WeldingProc_H001"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">High-Strength Steel Plates</hasName>
+  <hasID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">MAT-SP-001</hasID>
+  <hasQuantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">500</hasQuantity>
+  <locatedAt rdf:datatype="http://www.w3.org/2001/XMLSchema#string">warehouse1</locatedAt>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#WeldingRod_Stock">
+  <rdf:type rdf:resource="#WeldingRod"/>
+  <usedIn rdf:resource="#WeldingProc_H001"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">E7018 Welding Electrodes</hasName>
+  <hasID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">MAT-WR-001</hasID>
+  <hasQuantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">10000</hasQuantity>
+  <locatedAt rdf:datatype="http://www.w3.org/2001/XMLSchema#string">warehouse1</locatedAt>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Paint_Stock">
+  <rdf:type rdf:resource="#Paint"/>
+  <usedIn rdf:resource="#PaintingProc_V001"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Marine Grade Anti-Fouling Paint</hasName>
+  <hasID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">MAT-PT-001</hasID>
+  <hasQuantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">5000</hasQuantity>
+  <locatedAt rdf:datatype="http://www.w3.org/2001/XMLSchema#string">warehouse1</locatedAt>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Cable_Stock">
+  <rdf:type rdf:resource="#ElectricalCable"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Marine Grade Electrical Cable</hasName>
+  <hasID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">MAT-EC-001</hasID>
+  <hasQuantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">15000</hasQuantity>
+  <locatedAt rdf:datatype="http://www.w3.org/2001/XMLSchema#string">warehouse1</locatedAt>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#MES_System">
+  <rdf:type rdf:resource="#MES"/>
+  <manages rdf:resource="#WeldingProc_H001"/>
+  <manages rdf:resource="#AssemblyProc_E001"/>
+  <manages rdf:resource="#PaintingProc_V001"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Manufacturing Execution System</hasName>
+  <hasID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">DIG-MES-001</hasID>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#ERP_System">
+  <rdf:type rdf:resource="#ERP"/>
+  <manages rdf:resource="#WeldingRod_Stock"/>
+  <manages rdf:resource="#Cable_Stock"/>
+  <manages rdf:resource="#SteelPlate_Stock"/>
+  <manages rdf:resource="#Paint_Stock"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Enterprise Resource Planning</hasName>
+  <hasID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">DIG-ERP-001</hasID>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#DigitalTwin_V001">
+  <rdf:type rdf:resource="#DigitalTwin"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Digital Twin - Pacific Star</hasName>
+  <hasID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">DIG-DT-V001</hasID>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#AI_Optimization">
+  <rdf:type rdf:resource="#AISystem"/>
+  <manages rdf:resource="#WeldingProc_H001"/>
+  <manages rdf:resource="#AssemblyProc_E001"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">AI Production Optimizer</hasName>
+  <hasID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">DIG-AI-001</hasID>
+</owl:NamedIndividual>
+
+
+</rdf:RDF>
