@@ -3,10 +3,10 @@
          xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
          xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
          xmlns:owl="http://www.w3.org/2002/07/owl#"
-         xml:base="http://example.org/smartshipyard.owl"
-         xmlns="http://example.org/smartshipyard.owl#">
+         xml:base="https://raw.githubusercontent.com/bedro96/smartshipyard/refs/heads/main/smart_shipyard.owl"
+         xmlns="https://raw.githubusercontent.com/bedro96/smartshipyard/refs/heads/main/smart_shipyard.owl#">
 
-<owl:Ontology rdf:about="http://example.org/smartshipyard.owl"/>
+<owl:Ontology rdf:about="https://raw.githubusercontent.com/bedro96/smartshipyard/refs/heads/main/smart_shipyard.owl"/>
 
 <owl:ObjectProperty rdf:about="#locatedIn">
   <rdfs:domain>
@@ -663,7 +663,7 @@
   <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Temperature Sensor - Welding Robot 1</hasName>
   <hasID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">TS-WR001</hasID>
   <hasTemperature rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">45.5</hasTemperature>
-  <hasTimestamp rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2025-11-20T17:12:25.861109</hasTimestamp>
+  <hasTimestamp rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2025-11-20T17:14:33.039947</hasTimestamp>
 </owl:NamedIndividual>
 
 <owl:NamedIndividual rdf:about="#VibSensor_CR001">
@@ -673,7 +673,7 @@
   <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Vibration Sensor - Crane 1</hasName>
   <hasID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">VS-CR001</hasID>
   <hasVibration rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">2.3</hasVibration>
-  <hasTimestamp rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2025-11-20T17:12:25.861216</hasTimestamp>
+  <hasTimestamp rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2025-11-20T17:14:33.040032</hasTimestamp>
 </owl:NamedIndividual>
 
 <owl:NamedIndividual rdf:about="#PosSensor_V001">
@@ -706,8 +706,8 @@
   <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">John Smith</hasName>
   <hasID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">W-001</hasID>
   <hasExperience rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">15</hasExperience>
-  <hasCertification rdf:datatype="http://www.w3.org/2001/XMLSchema#string">6G Position</hasCertification>
   <hasCertification rdf:datatype="http://www.w3.org/2001/XMLSchema#string">AWS D1.1</hasCertification>
+  <hasCertification rdf:datatype="http://www.w3.org/2001/XMLSchema#string">6G Position</hasCertification>
   <locatedAt rdf:datatype="http://www.w3.org/2001/XMLSchema#string">welding_shop</locatedAt>
 </owl:NamedIndividual>
 
@@ -725,8 +725,8 @@
   <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">David Chen</hasName>
   <hasID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">E-001</hasID>
   <hasExperience rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">10</hasExperience>
-  <hasCertification rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Master Electrician</hasCertification>
   <hasCertification rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Marine Systems</hasCertification>
+  <hasCertification rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Master Electrician</hasCertification>
   <locatedAt rdf:datatype="http://www.w3.org/2001/XMLSchema#string">drydock1</locatedAt>
 </owl:NamedIndividual>
 
@@ -857,9 +857,9 @@
 
 <owl:NamedIndividual rdf:about="#MES_System">
   <rdf:type rdf:resource="#MES"/>
-  <manages rdf:resource="#WeldingProc_H001"/>
   <manages rdf:resource="#AssemblyProc_E001"/>
   <manages rdf:resource="#PaintingProc_V001"/>
+  <manages rdf:resource="#WeldingProc_H001"/>
   <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Manufacturing Execution System</hasName>
   <hasID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">DIG-MES-001</hasID>
 </owl:NamedIndividual>
@@ -882,8 +882,8 @@
 
 <owl:NamedIndividual rdf:about="#AI_Optimization">
   <rdf:type rdf:resource="#AISystem"/>
-  <manages rdf:resource="#WeldingProc_H001"/>
   <manages rdf:resource="#AssemblyProc_E001"/>
+  <manages rdf:resource="#WeldingProc_H001"/>
   <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">AI Production Optimizer</hasName>
   <hasID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">DIG-AI-001</hasID>
 </owl:NamedIndividual>

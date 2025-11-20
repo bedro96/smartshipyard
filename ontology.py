@@ -23,7 +23,7 @@ def create_smart_shipyard_ontology():
     print("="*80)
     
     # Create ontology
-    onto = get_ontology("http://example.org/smartshipyard.owl")
+    onto = get_ontology("https://raw.githubusercontent.com/bedro96/smartshipyard/refs/heads/main/smart_shipyard.owl")
     
     with onto:
         # ====================================================================
