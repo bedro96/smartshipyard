@@ -3,7 +3,16 @@ name = "smartshipyard"
 version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
-requires-python = ">=3.13.1"
+requires-python = ">=3.12"
 dependencies = [
+    "agent-dev-cli",
+    "debugpy>=1.8.17",
+    "flask>=3.1.2",
+    "matplotlib>=3.10.9",
+    "np>=1.0.2",
+    "numpy>=2.4.4",
     "owlready2>=0.48",
+    "pandas>=3.0.2",
+    "python-dotenv>=1.1.1",
+    "rdflib>=7.6.0",
 ]

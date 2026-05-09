@@ -3,7 +3,17 @@ import pandas as pd
 from dataclasses import dataclass
 from typing import Dict, List, Tuple
 import matplotlib.pyplot as plt
+import matplotlib.font_manager as fm
 from collections import defaultdict
+
+# 한국어 폰트 설정
+_ko_font = next(
+    (f.name for f in fm.fontManager.ttflist if 'Nanum' in f.name),
+    None
+)
+if _ko_font:
+    plt.rcParams['font.family'] = _ko_font
+plt.rcParams['axes.unicode_minus'] = False
 
 # =============================================================================
 # Layer 1: Risk Ontology Interface (실제로는 Ontology에서 가져온다고 가정)

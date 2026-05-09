@@ -9,6 +9,7 @@ Install: pip install owlready2 rdflib
 from owlready2 import *
 from datetime import datetime
 import random
+from typing import Any
 
 
 # ============================================================================
@@ -1047,6 +1048,78 @@ def generate_shipyard_analytics(onto):
         avg_quality = sum(c.hasQualityScore if hasattr(c, 'hasQualityScore') and c.hasQualityScore is not None else 0 for c in components_with_quality) / len(components_with_quality)
         print(f"\n✅ Quality Metrics:")
         print(f"   Average component quality score: {avg_quality:.1f}/100")
+
+
+def build_shipyard_snapshot() -> dict[str, Any]:
+    """Build a serializable snapshot for HTTP responses and agent tools."""
+
+    onto = create_smart_shipyard_ontology()
+    onto = populate_shipyard_data(onto)
+
+    vessels = []
+    for vessel in onto.Vessel.instances():
+        vessels.append(
+            {
+                "name": vessel.hasName if hasattr(vessel, "hasName") and vessel.hasName is not None else vessel.name,
+                "id": vessel.hasID if hasattr(vessel, "hasID") and vessel.hasID is not None else None,
+                "type": vessel.hasVesselType if hasattr(vessel, "hasVesselType") and vessel.hasVesselType is not None else None,
+                "completion_percentage": float(vessel.hasCompletionPercentage if hasattr(vessel, "hasCompletionPercentage") and vessel.hasCompletionPercentage is not None else 0),
+                "status": vessel.hasStatus if hasattr(vessel, "hasStatus") and vessel.hasStatus is not None else "Unknown",
+            }
+        )
+
+    materials = []
+    for material in onto.Material.instances():
+        materials.append(
+            {
+                "name": material.hasName if hasattr(material, "hasName") and material.hasName is not None else material.name,
+                "id": material.hasID if hasattr(material, "hasID") and material.hasID is not None else None,
+                "quantity": int(material.hasQuantity if hasattr(material, "hasQuantity") and material.hasQuantity is not None else 0),
+            }
+        )
+
+    high_priority_processes = []
+    for process in onto.Process.instances():
+        priority = process.hasPriority if hasattr(process, "hasPriority") and process.hasPriority is not None else None
+        if priority == "High":
+            supervisor = None
+            if process.supervisedBy:
+                supervisor_obj = process.supervisedBy
+                supervisor = supervisor_obj.hasName if hasattr(supervisor_obj, "hasName") and supervisor_obj.hasName is not None else supervisor_obj.name
+            high_priority_processes.append(
+                {
+                    "name": process.hasName if hasattr(process, "hasName") and process.hasName is not None else process.name,
+                    "status": process.hasStatus if hasattr(process, "hasStatus") and process.hasStatus is not None else "Unknown",
+                    "supervisor": supervisor or "Unassigned",
+                }
+            )
+
+    all_vessels = list(onto.Vessel.instances())
+    all_equipment = list(onto.Equipment.instances())
+    all_sensors = list(onto.Sensor.instances())
+    all_workers = list(onto.Worker.instances())
+    all_processes = list(onto.Process.instances())
+
+    average_completion = 0.0
+    if all_vessels:
+        average_completion = sum(
+            float(vessel.hasCompletionPercentage if hasattr(vessel, "hasCompletionPercentage") and vessel.hasCompletionPercentage is not None else 0)
+            for vessel in all_vessels
+        ) / len(all_vessels)
+
+    return {
+        "vessels": vessels,
+        "materials": materials,
+        "high_priority_processes": high_priority_processes,
+        "analytics": {
+            "total_vessels": len(all_vessels),
+            "total_workers": len(all_workers),
+            "total_equipment": len(all_equipment),
+            "total_sensors": len(all_sensors),
+            "total_processes": len(all_processes),
+            "average_completion_percentage": average_completion,
+        },
+    }
 
 
 def save_ontology(onto):

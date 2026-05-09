@@ -3,7 +3,17 @@ import pandas as pd
 from dataclasses import dataclass
 from typing import Dict, List, Tuple
 import matplotlib.pyplot as plt
+import matplotlib.font_manager as fm
 from collections import defaultdict
+
+# 한국어 폰트 설정
+_ko_font = next(
+    (f.name for f in fm.fontManager.ttflist if 'Nanum' in f.name),
+    None
+)
+if _ko_font:
+    plt.rcParams['font.family'] = _ko_font
+plt.rcParams['axes.unicode_minus'] = False
 
 # Ontology 연동을 위한 추가 import (실제 사용 시)
 try:
@@ -70,9 +80,9 @@ class OntologyConnector:
     def _load_rdf_ontology(self) -> Graph:
         """RDF/OWL 파일에서 Ontology 로드"""
         g = Graph()
-        if self.ttl_file:
-            g.parse(self.ttl_file, format='turtle')
-            print(f"[Ontology] Loaded {len(g)} triples from {self.ttl_file}")
+        if self.ontology_file:
+            g.parse(self.ontology_file, format='turtle')
+            print(f"[Ontology] Loaded {len(g)} triples from {self.ontology_file}")
         else:
             # 샘플 Ontology 생성
             g = self._create_sample_rdf_ontology()
@@ -736,8 +746,8 @@ def main():
     
     elif mode == 'rdf':
         print("\n→ RDF Mode 선택: RDF/OWL Ontology 사용")
-        # 실제 파일이 있다면: ttl_file='shipbuilding_risk.ttl'
-        connector = OntologyConnector(ontology_source='rdf', ttl_file=None)
+        # 실제 파일이 있다면: ontology_file='shipbuilding_risk.ttl'
+        connector = OntologyConnector(ontology_source='rdf', ontology_file=None)
         
     elif mode == 'sparql':
         print("\n→ SPARQL Mode 선택: SPARQL Endpoint 연동")

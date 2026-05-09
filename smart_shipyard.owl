@@ -663,7 +663,7 @@
   <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Temperature Sensor - Welding Robot 1</hasName>
   <hasID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">TS-WR001</hasID>
   <hasTemperature rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">45.5</hasTemperature>
-  <hasTimestamp rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2025-11-20T17:14:33.039947</hasTimestamp>
+  <hasTimestamp rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2026-05-07T16:24:54.667847</hasTimestamp>
 </owl:NamedIndividual>
 
 <owl:NamedIndividual rdf:about="#VibSensor_CR001">
@@ -673,7 +673,7 @@
   <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Vibration Sensor - Crane 1</hasName>
   <hasID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">VS-CR001</hasID>
   <hasVibration rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">2.3</hasVibration>
-  <hasTimestamp rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2025-11-20T17:14:33.040032</hasTimestamp>
+  <hasTimestamp rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2026-05-07T16:24:54.667960</hasTimestamp>
 </owl:NamedIndividual>
 
 <owl:NamedIndividual rdf:about="#PosSensor_V001">
@@ -706,8 +706,8 @@
   <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">John Smith</hasName>
   <hasID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">W-001</hasID>
   <hasExperience rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">15</hasExperience>
-  <hasCertification rdf:datatype="http://www.w3.org/2001/XMLSchema#string">AWS D1.1</hasCertification>
   <hasCertification rdf:datatype="http://www.w3.org/2001/XMLSchema#string">6G Position</hasCertification>
+  <hasCertification rdf:datatype="http://www.w3.org/2001/XMLSchema#string">AWS D1.1</hasCertification>
   <locatedAt rdf:datatype="http://www.w3.org/2001/XMLSchema#string">welding_shop</locatedAt>
 </owl:NamedIndividual>
 
@@ -725,8 +725,8 @@
   <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">David Chen</hasName>
   <hasID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">E-001</hasID>
   <hasExperience rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">10</hasExperience>
-  <hasCertification rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Marine Systems</hasCertification>
   <hasCertification rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Master Electrician</hasCertification>
+  <hasCertification rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Marine Systems</hasCertification>
   <locatedAt rdf:datatype="http://www.w3.org/2001/XMLSchema#string">drydock1</locatedAt>
 </owl:NamedIndividual>
 
@@ -744,8 +744,8 @@
   <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Dr. Sarah Johnson</hasName>
   <hasID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ENG-001</hasID>
   <hasExperience rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">20</hasExperience>
-  <hasCertification rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PE License</hasCertification>
   <hasCertification rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Naval Architect</hasCertification>
+  <hasCertification rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PE License</hasCertification>
 </owl:NamedIndividual>
 
 <owl:NamedIndividual rdf:about="#Inspector_001">
@@ -866,10 +866,10 @@
 
 <owl:NamedIndividual rdf:about="#ERP_System">
   <rdf:type rdf:resource="#ERP"/>
-  <manages rdf:resource="#WeldingRod_Stock"/>
   <manages rdf:resource="#Cable_Stock"/>
   <manages rdf:resource="#SteelPlate_Stock"/>
   <manages rdf:resource="#Paint_Stock"/>
+  <manages rdf:resource="#WeldingRod_Stock"/>
   <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Enterprise Resource Planning</hasName>
   <hasID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">DIG-ERP-001</hasID>
 </owl:NamedIndividual>
